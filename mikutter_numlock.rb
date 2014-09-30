@@ -8,13 +8,13 @@ Plugin.create(:numlock) do
   UserConfig[:numlock_on] = true if UserConfig[:numlock_on].nil?
 
   settings "Numlock" do
-    boolean '短冊にする', :numlock_on
+    boolean 'NumlockをON', :numlock_on
   end
 
   filter_gui_postbox_post do |gui_postbox|
     buf = Plugin.create(:gtk).widgetof(gui_postbox).widget_post.buffer
     text = buf.text
-    if UserConfig[:tanzaku_ni_suru]
+    if UserConfig[:numlock_on]
       to = nil
       if /^@[a-zA-Z0-9_]* / =~ text
         tmp = text.split(" ", 2)
